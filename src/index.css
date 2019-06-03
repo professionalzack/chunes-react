@@ -11,3 +11,61 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.nonheader {
+  margin-top: 10vh;
+  display: flex;
+  height: 90vh;
+  width: 100vw;
+}
+
+.sidebar {
+  background: lightgrey;
+  color: green;
+  height: 100%;
+  width: 20%;
+  position: fixed;
+  left: -20vw;
+}
+
+.header {
+  background: lightgreen;
+  height: 10vh;
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+}
+
+.main-area {
+  background: lightpink;
+  width: 100%;
+}
+
+.tune-tainer {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.tuneli {
+  border: 2px solid white;
+  border-radius: 25%;
+  padding: 2px;
+  margin: 5px;
+}
+
+.tune-space {
+  border: 1px solid black;
+  width: 50vw;
+  margin: auto;
+  box-shadow: 2px 2px 2px darkgrey;
+}
+
+.pull-tab {
+  width: 25px;
+  height: 55px;
+  background: lightgrey;
+  position: relative;
+  left: 100%;
+}
