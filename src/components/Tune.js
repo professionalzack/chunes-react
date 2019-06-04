@@ -5,7 +5,7 @@ import { withRouter, Link } from 'react-router-dom';
 const Tune = ({tune, number}) =>
   <li><Link to={"/tune/"+number}>
     <div className="tuneli">
-      <h4>{tune.title}</h4>
+      <p>{tune.title}</p>
     </div>
   </Link></li>
 

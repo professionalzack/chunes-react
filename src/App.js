@@ -9,19 +9,9 @@ import Library from './components/Library';
 
 function App() {
   const [library, setLibrary] = useState({
-    style: {left:'-20vw'},
+    style: {left:0},
   })
-  const toggleLibrary = (e) =>{
-    let tog = library.style.left === 0 ? {left:'-20vw'} : {left:0};
-    setLibrary({
-      ...library,
-      style: tog
-    })
-  }
-  // const tunesList = [
-  //   {title:'Bank of Ireland'}, {title:'Battering Ram'}, {title:'Behind the Haystack'}, {title:'Blackthorn Stick'}, {title:"Brenda Stubbert's"}, {title:"Chief O'Neils Favorite"}, {title:'Cliffs of Moher'}, {title:'Concertina Reel'}, {title:'Congress Reel'}, {title:"Cannaughtman's Rambles"}, {title:'Convenience Reel'}, {title:"Cooley's Reel"}, {title:'Crabs in the Skillet'}, {title:'Cup of Tea'}, {title:"Dennis Murphy's Slide"}, {title:'Dick Gossip'}
-  // ]
-  const user = {name: 'Jackson', tunes:[{ title: 'Dance de Sta. Orosia',
+  const [currentUser, setCurrentUser] = useState({name: 'Jackson', tunes:[{ title: 'Dance de Sta. Orosia',
   meter: '2/4',
   tunebody:
    '|:GGGA|B2Bc|A2c2|B2dd|ddgd|e2AA|dddd|G2dd|ddgd|e2AA|\ndddd|G4|dddd|d2cc|c2e2|d2dd|dded|g2dd|ccBA|G2dd|\ndddd|d2cc|BBAA|1G4:|2G2\n dd|:cAdd|BGz d/2d/2|cAdd|\nB2zd/2d/2|cAdd|BGz d/2d/2|cAdd|G2GB|d>Bce|d2cc\n|B>BAA|G2GB|d>Bce|d2cc|B>BAA|1G2dd:|2G2\ne2|:e2ee|e2dd|c2dd|e2ee|eeee|e2dd\n|c2d2|c2e2|A2AA|c2e2|A4|e2d2|1c4-|c2e2:|2c6' },
@@ -37,7 +27,36 @@ function App() {
   meter: '2/4',
   tunebody:
    '|:Gd|dBGd|dBGd|de^fe/2d/2|c2 \n  Dc|cADc|cADc|cded/2c/2|B2\n  Gd|dBGd|dBGd|de^fe/2d/2|c2 \n  Dc|cADc|cADc|cded/2c/2|B2 :|' },
-]}
+]})
+  const toggleLibrary = (e) =>{
+    let tog = library.style.left === 0 ? {left:'-20vw'} : {left:0};
+    setLibrary({
+      ...library,
+      style: tog
+    })
+  }
+
+  const usertunes = [{ title: 'Dance de Sta. Orosia',
+  meter: '2/4',
+  tunebody:
+   '|:GGGA|B2Bc|A2c2|B2dd|ddgd|e2AA|dddd|G2dd|ddgd|e2AA|\ndddd|G4|dddd|d2cc|c2e2|d2dd|dded|g2dd|ccBA|G2dd|\ndddd|d2cc|BBAA|1G4:|2G2\n dd|:cAdd|BGz d/2d/2|cAdd|\nB2zd/2d/2|cAdd|BGz d/2d/2|cAdd|G2GB|d>Bce|d2cc\n|B>BAA|G2GB|d>Bce|d2cc|B>BAA|1G2dd:|2G2\ne2|:e2ee|e2dd|c2dd|e2ee|eeee|e2dd\n|c2d2|c2e2|A2AA|c2e2|A4|e2d2|1c4-|c2e2:|2c6' },
+{ title: 'Gozos de san Martín de Tours',
+  key: 'Dm',
+  tunebody:
+   'AAGFG2FA2G2|A2G2FGF2EDD2|DEF2FG2BAGA2|ABcAB2AG2F2|\n|:A2A2GFG2FA2G2|A2G2FGF2EDD2>|DEF2FG2BAGA2|ABcAB2AG2F2|\nAAGFG2FA2G2|A2G2FGF2EDD2|DEF2FG2BAGA2|ABcAB2AG2F2:|' },
+{ title: 'la Culebra',
+  meter: '2/4',
+  tunebody:
+   '|:d>e/d/c/d/e/|dd/d/ de|dc cd|B/c/B/A/ GG:|\nc>d/cB|A2>A/B/|c>B/AB|G>G/GG|\nc>d/cB|A2>G/A/B/c/|d/e/d/c/BA|G2|' },
+{ title: 'tran,tran, trala',
+  meter: '2/4',
+  tunebody:
+   '|:Gd|dBGd|dBGd|de^fe/2d/2|c2 \n  Dc|cADc|cADc|cded/2c/2|B2\n  Gd|dBGd|dBGd|de^fe/2d/2|c2 \n  Dc|cADc|cADc|cded/2c/2|B2 :|' },
+]
+  // const tunesList = [
+  //   {title:'Bank of Ireland'}, {title:'Battering Ram'}, {title:'Behind the Haystack'}, {title:'Blackthorn Stick'}, {title:"Brenda Stubbert's"}, {title:"Chief O'Neils Favorite"}, {title:'Cliffs of Moher'}, {title:'Concertina Reel'}, {title:'Congress Reel'}, {title:"Cannaughtman's Rambles"}, {title:'Convenience Reel'}, {title:"Cooley's Reel"}, {title:'Crabs in the Skillet'}, {title:'Cup of Tea'}, {title:"Dennis Murphy's Slide"}, {title:'Dick Gossip'}
+  // ]
+
   const tunesList = [ { title: 'El Chinchecle',
   danse: 'bourrée',
   meter: '2/4',
@@ -212,7 +231,7 @@ function App() {
       <section className="nonheader">
         <div className="sidebar" style={library.style}>
           <div className="pull-tab" onClick={toggleLibrary}></div>
-          <Library className="sidebar" user={user} />
+          <Library className="sidebar" tunes={usertunes} />
         </div>
         <div className="main-area">
           <Switch>
