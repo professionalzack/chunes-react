@@ -6,29 +6,54 @@ import TuneIndex from './components/TuneIndex';
 import TuneShow from './components/TuneShow';
 import Header from './components/Header';
 import Library from './components/Library';
+import Register from './components/auth/register';
+import axios from 'axios';
+import Login from './components/auth/login';
 
-function App() {
+
+function App(async) {
+  const [ currentUser, setCurrentUser ] = useState(localStorage.currentUser);
   const [library, setLibrary] = useState({
     style: {left:0},
   })
-  const [currentUser, setCurrentUser] = useState({name: 'Jackson', tunes:[{ title: 'Dance de Sta. Orosia',
-  meter: '2/4',
-  tunebody:
-   '|:GGGA|B2Bc|A2c2|B2dd|ddgd|e2AA|dddd|G2dd|ddgd|e2AA|\ndddd|G4|dddd|d2cc|c2e2|d2dd|dded|g2dd|ccBA|G2dd|\ndddd|d2cc|BBAA|1G4:|2G2\n dd|:cAdd|BGz d/2d/2|cAdd|\nB2zd/2d/2|cAdd|BGz d/2d/2|cAdd|G2GB|d>Bce|d2cc\n|B>BAA|G2GB|d>Bce|d2cc|B>BAA|1G2dd:|2G2\ne2|:e2ee|e2dd|c2dd|e2ee|eeee|e2dd\n|c2d2|c2e2|A2AA|c2e2|A4|e2d2|1c4-|c2e2:|2c6' },
-{ title: 'Gozos de san Martín de Tours',
-  key: 'Dm',
-  tunebody:
-   'AAGFG2FA2G2|A2G2FGF2EDD2|DEF2FG2BAGA2|ABcAB2AG2F2|\n|:A2A2GFG2FA2G2|A2G2FGF2EDD2>|DEF2FG2BAGA2|ABcAB2AG2F2|\nAAGFG2FA2G2|A2G2FGF2EDD2|DEF2FG2BAGA2|ABcAB2AG2F2:|' },
-{ title: 'la Culebra',
-  meter: '2/4',
-  tunebody:
-   '|:d>e/d/c/d/e/|dd/d/ de|dc cd|B/c/B/A/ GG:|\nc>d/cB|A2>A/B/|c>B/AB|G>G/GG|\nc>d/cB|A2>G/A/B/c/|d/e/d/c/BA|G2|' },
-{ title: 'tran,tran, trala',
-  meter: '2/4',
-  tunebody:
-   '|:Gd|dBGd|dBGd|de^fe/2d/2|c2 \n  Dc|cADc|cADc|cded/2c/2|B2\n  Gd|dBGd|dBGd|de^fe/2d/2|c2 \n  Dc|cADc|cADc|cded/2c/2|B2 :|' },
-]})
-  const toggleLibrary = (e) =>{
+//   const [currentUser, setCurrentUser] = useState({name: 'Jackson', tunes:[{ title: 'Dance de Sta. Orosia',
+//   meter: '2/4',
+//   tunebody:
+//    '|:GGGA|B2Bc|A2c2|B2dd|ddgd|e2AA|dddd|G2dd|ddgd|e2AA|\ndddd|G4|dddd|d2cc|c2e2|d2dd|dded|g2dd|ccBA|G2dd|\ndddd|d2cc|BBAA|1G4:|2G2\n dd|:cAdd|BGz d/2d/2|cAdd|\nB2zd/2d/2|cAdd|BGz d/2d/2|cAdd|G2GB|d>Bce|d2cc\n|B>BAA|G2GB|d>Bce|d2cc|B>BAA|1G2dd:|2G2\ne2|:e2ee|e2dd|c2dd|e2ee|eeee|e2dd\n|c2d2|c2e2|A2AA|c2e2|A4|e2d2|1c4-|c2e2:|2c6' },
+// { title: 'Gozos de san Martín de Tours',
+//   key: 'Dm',
+//   tunebody:
+//    'AAGFG2FA2G2|A2G2FGF2EDD2|DEF2FG2BAGA2|ABcAB2AG2F2|\n|:A2A2GFG2FA2G2|A2G2FGF2EDD2>|DEF2FG2BAGA2|ABcAB2AG2F2|\nAAGFG2FA2G2|A2G2FGF2EDD2|DEF2FG2BAGA2|ABcAB2AG2F2:|' },
+// { title: 'la Culebra',
+//   meter: '2/4',
+//   tunebody:
+//    '|:d>e/d/c/d/e/|dd/d/ de|dc cd|B/c/B/A/ GG:|\nc>d/cB|A2>A/B/|c>B/AB|G>G/GG|\nc>d/cB|A2>G/A/B/c/|d/e/d/c/BA|G2|' },
+// { title: 'tran,tran, trala',
+//   meter: '2/4',
+//   tunebody:
+//    '|:Gd|dBGd|dBGd|de^fe/2d/2|c2 \n  Dc|cADc|cADc|cded/2c/2|B2\n  Gd|dBGd|dBGd|de^fe/2d/2|c2 \n  Dc|cADc|cADc|cded/2c/2|B2 :|' },
+// ]})
+
+// try {
+//   const result = await axios.get('http://localhost:8000/api/v1/tunes', {withCredentials: true});
+//   console.log(result)
+// } catch(err) {
+//   console.log(err);
+// }
+// axios.get('http://localhost:8000/api/v1/tunes', {withCredentials: true} )
+//   .then(function (response) {
+//     console.log(response);
+//   })
+//   .catch(function (error) {
+//     console.log(error);
+//   });
+
+// axios.get('http://localhost:8000/api/v1/users')
+//    .then(response=>console.log(response))
+axios.get('http://localhost:8000/api/v1/tunes')
+   .then(response=>console.log(response))
+
+const toggleLibrary = (e) =>{
     let tog = library.style.left === 0 ? {left:'-20vw'} : {left:0};
     setLibrary({
       ...library,
@@ -237,7 +262,8 @@ function App() {
           <Switch>
             <Route exact path='/' render={props=><TuneIndex tunes={tunesList}/>}/>
             <Route path='/tune/:tuneId' render={props=><TuneShow {...props} tunes={tunesList}/>}/>
-          </Switch>
+            <Route path='/register' component={Register} />
+            <Route path='/login' render={(props) => <Login {...props} setCurrentUser={setCurrentUser} />} />          </Switch>
         </div>
       </section>
     </div>
