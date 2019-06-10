@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import {withRouter, Link} from 'react-router-dom';
 
 const Login = ({ setCurrentUser, history }) => {
-  const [ error, setError ] = useState(null);
   const [ userData, setUserData ] = useState({
     username: '',
     password: ''
@@ -18,35 +18,49 @@ const Login = ({ setCurrentUser, history }) => {
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8000/accounts/login/', userData);
+      const response = await axios.post('http://localhost:8000/accounts/login/', userData, { withCredentials: true });
       console.log(response);
-      const currentUser = response.data.user;
-      localStorage.currentUser = currentUser.id;
+      console.log(response.data.profile);
+      const currentUser = response.data.profile;
       setCurrentUser(currentUser);
-      console.log('okay', currentUser)
-      // history.push(`/profile/${currentUser}`);
+      console.log('react login last', currentUser)
+      history.push('/');
+
     } catch (err) {
       console.log(err);
-      // setError(err.response.data.error);
     }
   }
+
+  // const handleLogout = async () => {
+  //     const response = await axios.get('http://localhost:8000/accounts/logout/', { withCredentials: true });
+  //     console.log(response);
+  //     setCurrentUser(response.data.profile)
+  // } 
+  const getProfile = async () => {
+      const response = await axios.get('http://localhost:8000/accounts/user/', { withCredentials: true });
+      console.warn('yeah man')
+      console.error('no man')
+      console.log('%c response ', 'background: #222; color: #bada55', response);
+  } 
 
   const { username, password } = userData;
 
   return (
     <section className="form">
-      <div>
+      {/* <div>
         {error ? error : null}
-      </div>
+      </div> */}
       <h1>Login</h1>
       <form onSubmit={handleSubmit}>
         <input type="text" name="username" value={username} onChange={handleChange} placeholder="Username Address"  />
         <input type="password" name="password" value={password} onChange={handleChange} placeholder="Password" />
         <input type="submit" value="Submit" />
+        {/* <Link to={"/"}><input type="submit" value="Submit" /></Link> */}
       </form>
+      {/* <button onClick={getProfile}>profile</button> */}
     </section>
   )
 
 }
 
-export default Login;
+export default withRouter(Login);

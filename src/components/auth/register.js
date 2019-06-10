@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import {withRouter, Link} from 'react-router-dom';
 import axios from 'axios';
 
 const Register = () => {
-  const [ errors, setErrors ] = useState([]);
+  // const [ errors, setErrors ] = useState([]);
   const [ newUser, setNewUser ] = useState({
     firstName: '',
     lastName: '',
@@ -28,14 +29,8 @@ const Register = () => {
       url: 'http://localhost:8000/accounts/register/',
       data: newUser
     }).then(response=>console.log(response))
+    .then(alert('still working navigation, but it worked!' ))
 
-    // try {
-    //   const result = await axios.post('http://localhost:8000/accounts/register/', newUser);
-    //   console.log(result)
-    // } catch(err) {
-    //   console.log(err);
-    //   setErrors(err.response.data.errors);
-    // }
 
   }
 
@@ -43,8 +38,8 @@ const Register = () => {
 
   return (
     <>
-      <section className="form">
-        { errors ? errors.map(error => `${error.message}. `) : null }
+      <section className="form reg">
+        {/* { errors ? errors.map(error => `${error.message}. `) : null } */}
         <h1>Register</h1>
         <form onSubmit={handleSubmit}>
           <input type="text" name="firstName" value={firstName} placeholder="First Name" onChange={handleChange} />
@@ -54,10 +49,11 @@ const Register = () => {
           <input type="password" name="password" value={password} placeholder="Password" onChange={handleChange} />
           <input type="password" name="password2" value={password2} placeholder="Confirm Password" onChange={handleChange} />
           <input type="submit" value="Submit" />
+          {/* <Link to={"/login"}><input type="submit" value="Submit" /></Link> */}
         </form>
       </section>
     </>
   )
 }
 
-export default Register;
+export default withRouter(Register);

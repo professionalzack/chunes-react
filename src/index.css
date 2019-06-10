@@ -35,7 +35,12 @@ li {
 }
 
 .header {
-  background: lightgreen;
+  padding:0 5vw;
+  padding-top:13px;
+  display: flexbox;
+  justify-content: space-between;
+  background: black;
+  color:white;
   height: 10vh;
   margin: 0;
   padding: 0;
@@ -45,17 +50,20 @@ li {
 }
 
 .main-area {
-  background: lightpink;
+  width: 70vw;
+  margin: auto;
+  background: white;
   width: 100vw;
   min-height: 100%;
+  padding: auto;
 }
 
 .tune-tainer {
   width: 70vw;
-  margin: auto;
+  margin: 30px auto;
   display: flex;
   flex-flow: row wrap;
-  border: 1px solid green;
+  border: 2px solid lightgrey;
 }
 
 .tuneli {
@@ -79,4 +87,16 @@ li {
   background: lightgrey;
   position: relative;
   left: 100%;
+}
+
+.header > * {
+  margin: 5px;
+}
+
+.reg {
+  display: flex;
+  flex-flow: column;
+}
+.reg>input {
+  margin: 5px auto;
 }

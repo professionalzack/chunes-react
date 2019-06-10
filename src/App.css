@@ -37,3 +37,18 @@
   background: blue;
   color: green;
 } */
+
+.header {
+  display: flex;
+}
+.header > * {
+  padding: 5px;
+}
+
+.reg {
+  display: flex;
+  flex-flow: column;
+}
+.reg>input {
+  margin: 5px auto;
+}
